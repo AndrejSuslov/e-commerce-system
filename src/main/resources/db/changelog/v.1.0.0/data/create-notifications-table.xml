@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="9" author="andrejsuslov308@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS notifications (
+                id BIGSERIAL PRIMARY KEY NOT NULL,
+                header TEXT NOT NULL CHECK(32 > LENGTH(header)),
+                body TEXT NULL CHECK(256 > LENGTH(body)),
+                created_at TIMESTAMPZ NOT NULL,
+                user_id BIGSERIAL NOT NULL REFERENCES users(id),
+                order_id BIGSERIAL NOT NULL REFERENCES orders(id),
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
