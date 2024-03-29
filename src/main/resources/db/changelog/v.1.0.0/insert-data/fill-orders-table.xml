@@ -1,0 +1,20 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="6" author="andrejsuslov308@gmail.com">
+        <comment>Inserting orders in table</comment>
+        <sql>
+            INSERT INTO orders (created_at, status, updated_at, user_id)
+            VALUES
+                ('2024-03-27 14:55:00', 'WAITING OF PAYING', '2024-03-28 18:00:00', 2),
+                ('2024-02-22 12:22:00', 'PAYED AND CLOSED', '2024-02-22 12:22:00', 2),
+                ('2024-03-26 16:56:00', 'WAITING OF PAYING', '2024-03-28 18:00:00', 3),
+                ('2023-02-17 11:17:00', 'PAYED AND CLOSED', '2023-02-17 11:17:00', 3),
+                ('2024-03-25 15:19:00', 'WAITING OF PAYING', '2024-03-28 18:00:00', 4),
+                ('2024-01-11 10:18:00', 'PAYED AND CLOSED', '2024-01-11 10:18:00', 4);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
