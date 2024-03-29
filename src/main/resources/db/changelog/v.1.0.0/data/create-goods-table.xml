@@ -12,8 +12,14 @@
                 created_at TIMESTAMPZ NOT NULL,
                 expires_at TIMESTAMPZ NOT NULL,
                 quantity BIGINT NOT NULL,
-                updated_at TIMESTAMPZ NULL,
+                status TEXT NOT NULL CHECK(64 > LENGTH(status)),
+                updated_at TIMESTAMPZ,
             );
+
+            ALTER TABLE goods
+                ADD COLUMN search tsvector
+                    GENERATED ALWAYS AS (to_tsvector('russian', replace(goods.name, 'ё', 'е'))) STORED;
+            CREATE INDEX goods_search_index ON goods USING GIN (search);
         </sql>
     </changeSet>
 

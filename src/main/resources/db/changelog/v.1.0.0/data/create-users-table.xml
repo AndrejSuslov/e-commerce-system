@@ -13,7 +13,7 @@
                 password TEXT NOT NULL CHECK(32 > LENGTH(password)),
                 birth_date TIMESTAMPTZ NULL,
                 email TEXT NOT NULL CHECK(32 > LENGTH(email)),
-                phone_number TEXT NULL CHECK(16 > LENGTH(phone_number)),
+                status TEXT NULL CHECK(64 > LENGTH(status)),
                 balance DECIMAL NOT NULL CHECK((balance) >= 0),
                 deleted_at TIMESTAMPZ NULL,
                 created_at TIMESTAMPZ NOT NULL,

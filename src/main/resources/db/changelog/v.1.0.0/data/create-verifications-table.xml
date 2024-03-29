@@ -10,6 +10,7 @@
                 token TEXT NOT NULL CHECK(128 > LENGTH(token)),
                 created_at TIMESTAMPTZ NOT NULL,
                 expires_at TIMESTAMPTZ NULL,
+                is_completed BOOLEAN NOT NULL,
                 user_id BIGINT NOT NULL references users(id)
             );
         </sql>

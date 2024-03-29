@@ -8,10 +8,17 @@
         <sql>
             INSERT INTO users (name, surnname, login, password, birth_date, email, phone_number, balance, deleted_at, created_at, updated_at)
             VALUES
-                ('Андрей', 'Юрьев', 'dobrowydka', 'Javu_vzyal_na_halyavu', '2002-04-01 00:00:00', 'dobrowydka@gmail.com', '+375292178963', 228000.00, NULL, '2024-01-01 18:30:00', NULL),
-                ('ВЛадислав', 'Пономаренко', 'sico', 'all_bithces_mine', '2004-12-04 00:00:00', 'sico@gmail.com', '+375297894561', 100.00, NULL, '2023-08-06 10:00:00', NULL),
-                ('Инокентий', 'Висарионов', 'ken', 'qwerty12345', '2000-07-11 00:00:00', 'ken@gmail.com', '+375291234567', 3000.00, NULL, '2022-05-05 12:45:00', NULL),
-                ('ТИмофей', 'Лутович', 'kachalka', 'kachatsa', '2004-10-14 00:00:00', 'timak@gmail.com', '+375334567823', 100000000000.00, NULL, '2020-04-22 09:15:00', NULL);
+                ('Андрей', 'Юрьев', 'dobrowydka', 'Javu_vzyal_na_halyavu', '2002-04-01 00:00:00', 'dobrowydka@gmail.com', 'VERIFIED', 228000.00, NULL, '2024-01-01 18:30:00', NULL),
+                ('ВЛадислав', 'Пономаренко', 'sico', 'all_bithces_mine', '2004-12-04 00:00:00', 'sico@gmail.com', 'VERIFIED', 100.00, NULL, '2023-08-06 10:00:00', NULL),
+                ('Инокентий', 'Висарионов', 'ken', 'qwerty12345', '2000-07-11 00:00:00', 'ken@gmail.com', 'VERIFIED', 3000.00, NULL, '2022-05-05 12:45:00', NULL),
+                ('ТИмофей', 'Лутович', 'kachalka', 'kachatsa', '2004-10-14 00:00:00', 'timak@gmail.com', 'VERIFIED', 100000000000.00, NULL, '2020-04-22 09:15:00', NULL);
+
+            ALTER TABLE users
+                ADD COLUMN search tsvector
+                    GENERATED ALWAYS AS (to_tsvector('russian', replace(
+                            users.name || ' ' || users.surname || ' ' || users.login,
+                            'ё', 'е'))) STORED;
+            CREATE INDEX users_search_index ON users USING GIN (search);
         </sql>
     </changeSet>
 

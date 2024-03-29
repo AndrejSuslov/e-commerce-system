@@ -9,7 +9,6 @@
                 id BIGSERIAL PRIMARY KEY NOT NULL,
                 token TEXT NOT NULL CHECK(128 > LENGTH(user_agent)),
                 refresh_token TEXT NOT NULL CHECK(128 > LENGTH(operation_system)),
-                expires_at TIMESTAMPZ NOT NULL,
                 user_id BIGSERIAL NOT NULL REFERENCES users(id),
             );
         </sql>

@@ -13,4 +13,4 @@ spring:
       hibernate:
         format_sql: true
   liquibase:
-    change-log: db/changelog/main-changelog.xml
+    change-log: db/changelog/changelog.xml

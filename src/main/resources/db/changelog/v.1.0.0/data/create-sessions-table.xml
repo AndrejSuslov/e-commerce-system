@@ -13,6 +13,10 @@
                 last_activity TIMESTAMPZ NOT NULL,
                 browser TEXT NOT NULL CHECK(32 > LENGTH(browser)),
                 user_id BIGSERIAL NOT NULL REFERENCES users(id),
+                status TEXT NOT NULL CHECK(64 > LENGTH(status)),
+                created_at TIMESTAMPZ NOT NULL,
+                updated_at TIMESTAMPZ NULL,
+                deleted_at TIMESTAMPZ NULL,
             );
         </sql>
     </changeSet>

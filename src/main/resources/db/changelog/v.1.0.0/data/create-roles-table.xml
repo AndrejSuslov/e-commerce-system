@@ -6,8 +6,9 @@
     <changeSet id="1" author="andrejsuslov308@gmail.com">
         <sql>
             CREATE TABLE IF NOT EXISTS roles (
-             id BIGSERIAL PRIMARY KEY NOT NULL,
-             name TEXT NOT NULL CHECK(64 > LENGTH(name)) UNIQUE);
+                id BIGSERIAL PRIMARY KEY NOT NULL,
+                name TEXT NOT NULL CHECK(64 > LENGTH(name)) UNIQUE
+            );
         </sql>
     </changeSet>
 
