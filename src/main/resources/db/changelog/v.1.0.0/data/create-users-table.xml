@@ -1,0 +1,25 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2" author="andrejsuslov308@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS users (
+                id BIGSERIAL PRIMARY KEY NOT NULL,
+                name TEXT NOT NULL CHECK(32 > LENGTH(name)),
+                surname TEXT NOT NULL CHECK(32 > LENGTH(surname)),
+                login TEXT NOT NULL CHECK(32 > LENGTH(login)) UNIQUE,
+                password TEXT NOT NULL CHECK(32 > LENGTH(password)),
+                birth_date TIMESTAMPTZ NULL,
+                email TEXT NOT NULL CHECK(32 > LENGTH(email)),
+                phone_number TEXT NULL CHECK(16 > LENGTH(phone_number)),
+                balance DECIMAL NOT NULL CHECK((balance) >= 0),
+                deleted_at TIMESTAMPZ NULL,
+                created_at TIMESTAMPZ NOT NULL,
+                updated_at TIMESTAMPZ NULL
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

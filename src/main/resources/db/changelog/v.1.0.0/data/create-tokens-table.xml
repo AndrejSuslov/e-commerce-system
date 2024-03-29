@@ -1,0 +1,18 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="12" author="andrejsuslov308@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS tokens (
+                id BIGSERIAL PRIMARY KEY NOT NULL,
+                token TEXT NOT NULL CHECK(128 > LENGTH(user_agent)),
+                refresh_token TEXT NOT NULL CHECK(128 > LENGTH(operation_system)),
+                expires_at TIMESTAMPZ NOT NULL,
+                user_id BIGSERIAL NOT NULL REFERENCES users(id),
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
